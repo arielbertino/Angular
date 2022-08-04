@@ -1,1 +1,136 @@
 /* You can add global styles to this file, and also import other style files */
+/*
+    CSS:  lenguaje que nos permite aplica esitilo al HTML
+    SASS: leguaje de preprocesado que se convirte(compila) a CSS
+    SCSS: Lengaje de preprocesamiento que se compila(compila) a CSS
+    SASS es lo mismo que SCSS
+
+    // Modo de uso de SASS
+    SASS: Se crea un archivo y se compila con ciertas herramientas visuales, 
+          desde consola, sistemas de bundling, sistemas de task runner. No usa ;,
+          no {}. En archivos CSS si 
+
+*/
+
+// Variables es SCSS
+// 1-> Declaracion
+// 2-> Uso
+// 3-> Normalmente los nombres de variables se escriben con snake case
+
+$negro : black;
+
+a{
+    color: $negro;
+}
+
+p{
+    background-color: $negro;
+}
+
+$color-negro  : black;
+$color-blanco : white;
+$fuente-normal: Verdana;
+$fuente-titulo: Helvetica;
+
+header{
+    color : $color-negro;
+    font-family: $fuente-normal;
+}
+
+h1{
+    background-color: $color-blanco;
+    font-family: $fuente-titulo;
+}
+
+// Una manera mas organizada de tener las variables, por ejemplo en una arreglo (array)
+// Usando map-get similar get de hashMap de java
+// formato: map-get(estructura, nombre)
+
+$colores: (
+    "negro"  : black,
+    "blanco" : white,
+);
+
+$fuentes: (
+    "normal"  : Verdana,
+    "titulo" : Helvetica,
+);
+
+header{
+    color : map-get( $colores, "negro" );
+    font-family: map-get($fuentes , "normal" );
+}
+
+h1{
+    background: map-get( $colores, "titulo" );
+}
+
+// Mixins: funciones que permiten ahorrar linea de codigo, pueden ursar argumentos, @content
+// No existen en CSS pera si en SASS
+
+// Mixin son argumentos
+// Mixin con solo un argumento
+// Mixin con mas de jun argumento
+// Mixin con argumento con valor po defecto
+// Mixin con regla @content
+// Mixin para Flex
+// Mixin para Grid
+// Mixin para Responsive Design
+// Mixin de creacion de propia
+
+// Mixins en CSS
+// Creamos @mixin
+// Usamos con @include
+// Si no hay argumentos podemos no poner los "()"
+
+// Creacion
+@mixin nombreMixin() {
+    background: black;
+}
+header{
+    // Uso de mixin con parentesis
+    @include nombreMixin(); 
+}
+
+@mixin otroMixin {
+    background: crimson;
+}
+header{
+    // usa de mixin son parentesis
+    @include otroMixin(); 
+}
+
+@mixin mix1Arg ( $argumento1 ) {
+    color: $argumento1;
+}
+p{
+    @include mix1Arg(red);
+}
+
+// Orden de los parametros en invocacio es posicional
+@mixin mixMuchosArgs ( $argumento1, $argumento2, $argumento3 ) {
+    color: $argumento1;
+    font-weight: $argumento2;
+    font-size: $argumento3;
+}
+p{
+    @include mixMuchosArgs (yellow, bold, 5em);
+}
+
+// Mixin con valor por defecto en el parametro
+
+@mixin mixValPorDef ( $argumento1 : white){
+    color: $argumento1;
+}
+p{
+    @include mixValPorDef();
+    @include mixValPorDef( green);
+}
+
+// Mixin con regla @content
+// Permite introducio multiple propiedades CSS dentro de un mixin
+// Muy usado para Responsive Design
+
+@mixin movil (){
+
+}
