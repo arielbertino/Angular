@@ -58,11 +58,11 @@ $fuentes: (
 
 header{
     color : map-get( $colores, "negro" );
-    font-family: map-get($fuentes , "normal" );
+    font-family: map-get($fuentes , "titulo" );
 }
 
 h1{
-    background: map-get( $colores, "titulo" );
+    background: map-get( $colores, "negro" );
 }
 
 // Mixins: funciones que permiten ahorrar linea de codigo, pueden ursar argumentos, @content
@@ -132,5 +132,229 @@ p{
 // Muy usado para Responsive Design
 
 @mixin movil (){
-
+    @media screen and (max-width: 560pxS){
+        @content; 
+    }
 }
+p{
+    font-size: 10em;
+    @include movil(){
+        font-size: 2em;
+    }
+}
+
+// Cuando no usamos mixin cuando:
+// Repetimos varias veces las mismas propiedades
+// Nos olvidamos de ponerlas en orden
+// Escribimos varias lineas por etiqueta
+// Mas probabilidad de equivocarte al escribir
+
+// Ejmplo de mixin flex
+// Los siguinetes dos bloques main y section, es la manera de hacerlo sin mixins
+main{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+section{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+// acontinuacion los hacemos con mixins
+@mixin flexible ($dis, $direction, $corte, $just, $align){
+    display         : $dis;
+    flex-flow       : $direction $corte;
+    justify-content : $just;
+    align-items     : $align;   
+}
+
+main{
+    @include flexible(flex, row, nowrap, center, center);
+}
+section{
+    @include flexible(flex, column, nowrap, flex-start, flex-start);
+}
+
+// mixin con grid
+// ejemplo sin mixin
+main{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2em;
+}
+section{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2em;
+}
+// ejemplo con mixin
+@mixin grid ($columnas, $espacio) {
+    display: grid;
+    grid-template-columns: repeat($columnas, 1fr);
+    gap: 0em;
+
+    @media screen and (max-width: 480px){
+        grid-template-columns: 1fr;
+        gap: 0em;
+    }
+}
+// ahora lo usamos
+main{ 
+    @include grid( 4, 1em);
+}
+section{
+    @include grid(3, 2m); 
+}
+
+// mixin para responsive design 
+// ejemplo sin mixin
+article{
+    width: 25%;
+}
+@media screen and (max-width:768px){
+    article{
+        width: 50;
+    }
+}
+@media screen and (max-width:480px){
+    @article{
+        width: 100%;
+    }
+}
+// ejeplo con mixin
+
+@mixin mv($medida: 480px){
+    @media screen and (max-width: $medida){
+        @content;
+    }
+}
+article{
+    width: 25;
+    @include mv(769px) {width: 50%}
+    @include mv        {width: 100%}
+}
+
+// ejemplde de creacion de mixin propio
+// ejemplo usando neomorfismo
+// Para detectar que tienen que hacer tu propio mixin se debe
+//  detectar cuando siempre se usan las misma propiedades
+//  tener en claroo tu propia forma de maquetar para llevarlo a n mixin
+
+// neomorfismo son mixins (css puro)
+article{
+    border-radius: 60xp;
+    background: #e0e0e0;
+    box-shadow: 21px 21px 42px #bebebe, -21px -21px -42px #ffffff;
+}
+section{
+    border-radius: 20xp;
+    background: #e0e0e0;
+    box-shadow: 10px 10px 20px #bebebe, -10px -10px -20px #ffffff; 
+}
+
+// con mixins
+
+@mixin neo($radius, $eje) {
+    border-radius: $radius;
+    background: #e0e0e0;
+    box-shadow: $eje $eje ($eje*2)#bebebe, (-$eje) (-$eje) ($eje*2) #ffffff; 
+}
+article{
+    @include neo(50px, 21px);
+}
+section{
+    @include neo(10px, 20px);
+}
+
+// Anidaciones es SASS-SCSS-CSS
+// ejemplo sin anidacion
+@mixin flex() {
+    p{
+        text-align: justify;
+    }
+}
+
+header{
+    color: black;
+}
+header h1{
+    color: red;
+}
+header nav{
+    @include flex();
+}
+
+// Ejemplo con anidacion
+header{
+    color: black;
+    h1{
+        color: red;
+    }
+    nav{
+        @include flex();
+    }
+}
+
+// selector &: añade el selector padre cuando anidamos
+// ejemplo sin &
+a{
+    color: black;
+}
+a:active{
+    color: red;
+}
+a:hover{
+    color: aqua;
+}
+a:visited{
+    color: pink;
+}
+// Ejemplo con &
+a{
+    color: black;
+    &:active  { color: red;  }
+    &:hover   { color: aqua; }
+    &:visited { color: pink; }
+}
+
+// Analizamos todo esto con la metodologia BEM
+/*
+    Que nombre le pongo a una clase en CSS?
+    cualquier nombre siguiendo una cierta metodologia
+
+    Que metodoligias de CSS deberia usar?
+    existen muchas: BEM CSS, SUIT CSS, CUBE CSS y muchas mas
+
+    Que significa BEM CSS?
+    Es una metodologia que define cierto elementos como un bloque, elemento y modificador
+    son reglas para escribir el nombre de ua clase
+
+    Que es BEM en SASS?
+    Adaptamos los selectores de BEM gracias a la anidacion y el selector &
+    */
+
+// Ejemplo BEM sin anidar
+.header{
+    color: black;
+}
+.header__nav{
+    color: red;
+}
+
+// Ejemplo BEM con anidacion y selector &
+.header{
+    color: black;
+
+    &__h1{
+        color: pink;
+    }
+    &__nav{
+
+    }
+}
+
