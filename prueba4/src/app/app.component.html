@@ -1,3 +1,4 @@
+<mat-card> Simple card </mat-card>
 <div class="headerTutorial">
 
   <nav class="navbar navbar-expand-lg bg-light">
@@ -37,18 +38,24 @@
     </div>
   </nav>
 
+
+
   <h1>Yo ariel Eugenio Bertino.</h1>
   <h2>Curso Nº 4 de ANGULAR</h2>
+  <mat-slider aria-label="unit(s)"></mat-slider>
   <div class="card" style="width: 18rem;">
     <img src="https://okdiario.com/img/2016/11/21/sistema-solar-que-es-origen-datos-y-curiosidades.jpg"
       class="card-img-top" alt="...">
     <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-        content.</p>
+      <h5 class="card-title">Universo profundo</h5>
+      <p class="card-text"> Aca te voy a contar la mierdita que es la tierra y sus habitantes, en lugar de estar todos contentos
+        son todos una mierda
+      </p>
       <a href="https://google.com" class="btn btn-primary">Go somewhere</a>
     </div>
   </div>
+
+
 
   <div class="mb-3">
     <label for="exampleFormControlInput1" class="form-label">Email address</label>
@@ -58,6 +65,28 @@
     <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
   </div>
+
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Shiba Inu</mat-card-title>
+      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+        bred for hunting.
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+
+  
 
   <button type="button" class="btn btn-primary">Primary</button>
   <button type="button" class="btn btn-secondary">Secondary</button>
@@ -72,5 +101,33 @@
 
   <button type="submit" class="btn btn-light">Guardar</button>
 
+  <div style="padding-right: 15%;">
+    <h2> La nueva variable es esta:</h2>
+    <p>{{palabra}}</p>
+    <h2>La edad que tengo ahora es esta: {{edad}}</h2>
+  </div>
+  
+  <h2>Estoy solero?: </h2>
+  <input type="checkbox" [checked]="soltero">
+  
+  <h2>Datos adicionales: {{datos}}</h2>
+
+  <h2>Te tiro cualquier fruto mira:</h2>
+  <p>{{amigos}}</p>
+
+  <h3>Aca te voy a mostrar unJSON, si te gusta bie n si so, mala suerte: </h3>
+  <p>{{datoJSON.tranquilo}}</p>
+
+  <h3>mis amigos son: </h3>
+  <ul *ngFor="let item of amigos">
+    <li>Cada falopa es: {{item}}
+    </li>
+  </ul>
+
+  <h4>Te quiero mostrar el JSON:</h4>
+  <ul *ngFor="let att of datoJSON">
+    <li>Tiene: {{att.edad}}, Fumó {{att.fasosFumados}}, Tomó: {{att.alcoholTomado}}, esTanquilo: {{att.tranquilo}} </li>
+  </ul>
 
 </div>
+
