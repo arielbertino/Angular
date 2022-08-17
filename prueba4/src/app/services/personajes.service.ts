@@ -15,4 +15,9 @@ export class PersonajesService {
   public getAllPersonaje(): Observable<any>{
     return this.http.get(this.API_PERSONAJES);
   }
+  // prototipo de peticion post
+  public setAllPersonaje(personaje:any): Observable<any>{
+    return this.http.post(this.API_PERSONAJES, personaje);
+  }
+
 }

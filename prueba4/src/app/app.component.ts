@@ -31,7 +31,7 @@ export class AppComponent {
   ngOnInit(): void { 
 
     this.service.getAllPersonaje().subscribe(personajes => {
-      this.personajes = this.personajes.results;
+      this.personajes = personajes.results;
       console.log(this.personajes);
     })
 /*   

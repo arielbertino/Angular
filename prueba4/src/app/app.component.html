@@ -139,7 +139,28 @@ todo esto es del curso hasta parte 9
 
 
 <div class="container">
-  <app-navbar></app-navbar>
-  <app-header></app-header>
-  <app-footer></app-footer>
+
+
+  <mat-grid-list cols="2" >
+    <mat-grid-tile *ngFor="let item of personajes">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{item.name}}</mat-card-title>
+          <mat-card-subtitle>{{item.status}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="{{item.image}}" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <p>
+            {{item.species}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+
 </div>

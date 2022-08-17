@@ -11,10 +11,12 @@ import {MatSliderModule} from          '@angular/material/slider';
 import {MatToolbarModule} from         '@angular/material/toolbar';
 import {MatIconModule} from            '@angular/material/icon';
 import {MatButtonModule} from          '@angular/material/button';
+import {MatGridListModule} from        '@angular/material/grid-list';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -35,7 +37,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatSliderModule,
     MatToolbarModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
