@@ -24,4 +24,5 @@ export class AppComponent {
   // Se podria ver como un pasaje de parametros
   title = 'proyectoPruebas';
   nombre:string = "Ariel Eugenio Bertino";
+  
 }

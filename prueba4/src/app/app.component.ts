@@ -23,6 +23,7 @@ export class AppComponent {
   datoJSON : any;
 */
   personajes: any = {};
+  title: any;
 
   constructor(private service: PersonajesService){
 
