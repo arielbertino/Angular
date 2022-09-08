@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { MiComponenteComponent } from './mi-componente/mi-componente.component';
 import { SegundoComponenteComponent } from './segundo-componente/segundo-componente.component';
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   // Aca se cagan los componentes
   declarations: [
@@ -17,7 +19,8 @@ import { SegundoComponenteComponent } from './segundo-componente/segundo-compone
   // Aca se importa otros modulos
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule
   ],
   // Aca se importan servicios
   providers: [],
